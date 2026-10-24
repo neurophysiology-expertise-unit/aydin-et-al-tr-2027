@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Event-gated output coupling in excitable lattices: simulator and pre-registered analyses"
+authors:
+  - family-names: "Aydın"
+    given-names: "Çağatay"
+    orcid: "https://orcid.org/0000-0002-7216-1079"
+license: MIT
+repository-code: "https://github.com/neurophysiology-expertise-unit/aydin-et-al-tr-2027"

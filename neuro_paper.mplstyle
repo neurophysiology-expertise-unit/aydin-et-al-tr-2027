@@ -1,0 +1,38 @@
+# neuro_paper.mplstyle — figure style used by paperC_fig_window.py (loaded by a path relative to that script).
+# Set figsize per figure in cm (mplstyle cannot express figsize).
+
+# fonts (points)
+font.size:         8
+axes.titlesize:    8
+axes.labelsize:    7
+xtick.labelsize:   6
+ytick.labelsize:   6
+legend.fontsize:   6
+
+# axes: drop the top/right box
+axes.spines.top:     False
+axes.spines.right:   False
+
+# ticks: short, outward
+xtick.direction:   out
+ytick.direction:   out
+xtick.major.size:  2.5
+ytick.major.size:  2.5
+
+# lines
+lines.linewidth:   1.0
+
+# legend: no frame, tight
+legend.frameon:        False
+legend.handlelength:   1.2
+legend.borderpad:      0.1
+legend.labelspacing:   0.2
+
+# export: 600 dpi, tight bounding box
+savefig.dpi:    600
+savefig.bbox:   tight
+
+# keep text editable in a vector editor
+pdf.fonttype:   42
+ps.fonttype:    42
+svg.fonttype:   none

@@ -1,0 +1,11 @@
+# Conda environment used for every result in processed_data/ (versions as run).
+name: excitable-lattice
+channels: [conda-forge]
+dependencies:
+  - python=3.9.12
+  - numpy=1.26.4
+  - numba=0.60.0
+  - scipy=1.13.1
+  - matplotlib=3.9.4
+  - pandas=2.2.3
+  - pytest=8.4.2
