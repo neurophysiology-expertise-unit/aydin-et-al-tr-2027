@@ -1,11 +1,11 @@
 """
 paperC_model.py — the model code that the round scripts use.
 
-Homogeneous FitzHugh-Nagumo excitable lattice with an event-gated output (gain g set when a cell fires), a
-refractory state and decremental release:
+Homogeneous FitzHugh-Nagumo excitable lattice with event-gated, self-draining output coupling (gain g set when a
+cell fires) and a refractory state:
   run_gen    = the lattice integrator (per-cell parameter arrays, noise off) with a per-cell record of the first firing
   hom_params = every per-cell parameter replaced by its ensemble mean
-The decremental constants are C_DOWN, K_REF, SCALE, G_FLOOR.
+The release and refractory constants are C_DOWN, K_REF, SCALE, G_FLOOR.
 
 numba fastmath copies of an integrator can diverge from the original, so `check()` asserts that run_gen reproduces
 stored results bit for bit: the planar-front extent on the axis chain (k = 1, d_lat = 8 and 16) stored in
@@ -18,10 +18,11 @@ from numba import njit
 from core.model import (laplacian, DT, ETA, A_FHN, B_FHN, THETA_BASE, NOISE_MULT,
                         SIGMA_EM_PREDICTED, I0_BASE)
 
-# decremental-release constants
+# release and refractory constants
 C_DOWN = -1.2; K_REF = 20.0; SCALE = 0.15; G_FLOOR = 0.02
 # protocol constants
 L, STRIDE, PATCH, UM, ALPHA, TAU_REF, T_WIN = 64, 5, 2, 25.0, 0.01, 15.0, 120.0
+STEPS = int(T_WIN / DT)
 THETA = THETA_BASE + 0.7 * ALPHA
 HERE = pathlib.Path(__file__).resolve().parent
 

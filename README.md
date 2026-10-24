@@ -1,9 +1,10 @@
-# Event-gated output coupling in excitable lattices: simulator, pre-registered analyses and figure
+# Event-gated, self-draining output coupling in excitable lattices: simulator, pre-registered analyses and figure
 
 This repository regenerates the results and Figure 1 of the manuscript on front propagation in a lattice of
-FitzHugh–Nagumo cells with event-gated output coupling (a cell's output gain is set when it fires; refractory clamp;
-decremental release), and runs the model. It contains the simulator (numba), the eight pre-registered analysis
-scripts, their stored results (`processed_data/*.npz`) and the figure script.
+FitzHugh–Nagumo cells with event-gated, self-draining output coupling (a cell's output gain is set when it fires, and
+a fired cell drains its own output into its unfired neighbours; refractory clamp), and runs the model. It contains
+the simulator (numba), the eight pre-registered analysis rounds, three earlier focal-front analyses on the uniform
+lattice, their stored results (`processed_data/*.npz`) and the figure script.
 
 ## Install and self-test
 
@@ -65,8 +66,23 @@ from `__params__`.
 
 Re-running a round: `python -s paperC_<round>.py` (multiprocessing pool of 11 workers; checkpoints in
 `/tmp/paperC_*_ckpt`). Each script first asserts its integrator gate and
-`paperC_model.check()`. Docstrings refer by name to earlier exploratory analyses (for example `paperC_direction`)
-that informed some predictions; those analyses are not part of this release.
+`paperC_model.check()`.
+
+## Focal fronts and front direction (earlier analyses, uniform lattice)
+
+These ran on the two-dimensional uniform lattice with `paperC_model.run_gen` (original release rule, time step DT,
+120 s, noise off, full regeneration). They came before rounds 1–8 and are not counted in the round table above.
+
+| script → result | content | tests | passed | failed |
+|---|---|---|---|---|
+| `paperC_geometry.py` → `paperC_geometry.npz` | square seeds of half-width 2, 4, 8 and a planar stripe, d 3.5–8 (the focal-front runs of the manuscript's Section 3.7) | one prediction in the docstring; no outcome flag stored | — | — |
+| `paperC_direction.py` → `paperC_direction.npz` | planar stripes in five lattice directions; diagonal/axis pairs; square seeds | D1–D3 | D1, D2 | D3 |
+| `paperC_facet.py` → `paperC_facet.npz` | rectangles of facet length l and digital disks | F1–F3 | F3 | F1, F2 |
+
+`paperC_geometry.py` was run with an earlier module that held the same `run_gen` and `hom_params` (verbatim); its
+import now points to `paperC_model`. The docstrings refer by name to analyses that are not part of this release
+(`paperC_critical_radius`, `paperC_mechanism` and others); their results are quoted there only as the background of
+each prediction.
 
 ## Figure 1
 
@@ -80,7 +96,10 @@ the script's directory.
 
 These scripts are the pre-registered scripts; the commit history recording each pre-registration before its run is
 kept in a separate repository available to the editor on request. The `__git_commit__` stamps in the result files
-refer to that repository.
+refer to that repository. The tests here assert every integrator variant against the reference integrator
+`run_gen`, and `run_gen` against stored results of this repository; the comparison of `run_gen` with the stored runs
+of the original simulation code, and the analyses on a heterogeneous version of the lattice, are also available to
+the editor on request.
 
 ## Credit and licence
 
