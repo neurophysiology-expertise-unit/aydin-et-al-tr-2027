@@ -80,9 +80,8 @@ These ran on the two-dimensional uniform lattice with `paperC_model.run_gen` (or
 | `paperC_facet.py` → `paperC_facet.npz` | rectangles of facet length l and digital disks | F1–F3 | F3 | F1, F2 |
 
 `paperC_geometry.py` was run with an earlier module that held the same `run_gen` and `hom_params` (verbatim); its
-import now points to `paperC_model`. The docstrings refer by name to analyses that are not part of this release
-(`paperC_critical_radius`, `paperC_mechanism` and others); their results are quoted there only as the background of
-each prediction.
+import now points to `paperC_model`. Some docstrings refer by name to earlier exploratory analyses that are not part of this release; their results are
+quoted there only as the background of a prediction.
 
 ## Figure 1
 
@@ -94,12 +93,10 @@ the script's directory.
 
 ## Provenance
 
-These scripts are the pre-registered scripts; the commit history recording each pre-registration before its run is
-kept in a separate repository available to the editor on request. The `__git_commit__` stamps in the result files
-refer to that repository. The tests here assert every integrator variant against the reference integrator
-`run_gen`, and `run_gen` against stored results of this repository; the comparison of `run_gen` with the stored runs
-of the original simulation code, and the analyses on a heterogeneous version of the lattice, are also available to
-the editor on request.
+These scripts are the pre-registered scripts: each docstring states the prediction, method and pass criterion
+written before its run. The `__git_commit__` stamp in each result file records the script version that produced it.
+The tests assert every integrator variant against the reference integrator `run_gen`, and `run_gen` against stored
+results of this repository.
 
 ## Credit and licence
 
